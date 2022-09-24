@@ -2,10 +2,12 @@ import { MaterialIcons } from "@expo/vector-icons"
 import { useState } from "react"
 import { TextInput, View } from "react-native"
 import colors from "../../../styles/colors"
+import styles from "./styles"
 
 interface IStyledInput {
     value ?: string
     placeholder ?: string
+    style ?: any
     keyboardType ?: "default" | "numeric" | "email-address"
     onChangeText : (value : string) => void
     icon? : keyof typeof MaterialIcons.glyphMap
@@ -13,7 +15,7 @@ interface IStyledInput {
     onBlur ?: () => void
 }
 
-const StyledInput : React.FC<IStyledInput> = ({value, placeholder, keyboardType, onChangeText, icon, error, onBlur}) => {
+const StyledInput : React.FC<IStyledInput> = ({value, placeholder, keyboardType, onChangeText, icon, error, onBlur, style}) => {
     const [hasFocus, setFocus] = useState(false);
     
     const getColor = () => {
@@ -31,8 +33,8 @@ const StyledInput : React.FC<IStyledInput> = ({value, placeholder, keyboardType,
     }
 
     return (
-        <View>
-            { icon && <MaterialIcons name={icon} size={24} color={getColor()}/> }
+        <View style={{ ...styles.container, ...style, borderColor : getColor() }}>
+            { icon && <MaterialIcons name={icon} size={32} color={getColor()} style={{marginRight : 4}}/> }
             <TextInput
                 style={styles.input}
                 placeholder={placeholder}
