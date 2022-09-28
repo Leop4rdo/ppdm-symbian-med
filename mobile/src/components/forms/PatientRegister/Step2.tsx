@@ -1,9 +1,10 @@
 import { useEffect, useRef } from "react"
 import { Animated, Easing } from "react-native"
 import StyledInput from "../../shared/StyledInput"
+import { IPatientRegisterFormProps } from "./Step1"
 import styles from "./styles"
 
-const PatientRegisterFormStep2 : React.FC = () => {
+const PatientRegisterFormStep2 : React.FC<IPatientRegisterFormProps> = ({ onChange, formValues }) => {
     const fadeAnim = useRef(new Animated.Value(0)).current
     
     useEffect(() => {
@@ -12,7 +13,7 @@ const PatientRegisterFormStep2 : React.FC = () => {
             {
                 toValue : 1,
                 useNativeDriver : true,
-                duration : 500,
+                duration : 750,
                 easing : Easing.out(Easing.ease)
             }
         ).start()
@@ -23,9 +24,9 @@ const PatientRegisterFormStep2 : React.FC = () => {
             ...styles.container,
             opacity : fadeAnim,
         }}>
-            <StyledInput icon='phone' onChangeText={() => {}}/>
+            <StyledInput icon='phone' placeholder="Telefone do paciente" onChangeText={(text) => { onChange('patientPhone', text) }}/>
 
-            <StyledInput icon='phone-iphone' onChangeText={() => {}}/>
+            <StyledInput icon='phone-iphone' placeholder="Celular do paciente" onChangeText={(text) => { onChange('patientCellphone', text) }}/>
         </Animated.View>
     )
 }

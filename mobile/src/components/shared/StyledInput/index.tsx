@@ -34,7 +34,7 @@ const StyledInput : React.FC<IStyledInput> = ({value, placeholder, keyboardType,
 
     return (
         <View style={{ ...styles.container, ...style, borderColor : getColor() }}>
-            { icon && <MaterialIcons name={icon} size={32} color={getColor()} style={{marginRight : 4}}/> }
+            { icon && <MaterialIcons name={icon} size={32} color={getColor()} style={{marginRight : 8}}/> }
             <TextInput
                 style={styles.input}
                 placeholder={placeholder}

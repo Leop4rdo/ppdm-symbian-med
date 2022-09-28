@@ -3,29 +3,34 @@ import { Animated, Easing } from "react-native"
 import StyledInput from "../../shared/StyledInput"
 import styles from "./styles"
 
-const PatientRegisterFormStep1 : React.FC = () => {
-    const fadeAnim = useRef(new Animated.Value(0)).current
+export interface IPatientRegisterFormProps {
+    onChange : (key : any, value : any) => void,
+    formValues : any
+}
+
+const PatientRegisterFormStep1 : React.FC<IPatientRegisterFormProps> = ({ onChange, formValues }) => {
+    const fadeOpacityAnim = useRef(new Animated.Value(0)).current
     
     useEffect(() => {
         Animated.timing(
-            fadeAnim,
+            fadeOpacityAnim,
             {
                 toValue : 1,
                 useNativeDriver : true,
-                duration : 500,
+                duration : 750,
                 easing : Easing.out(Easing.ease)
             }
         ).start()
-    }, [fadeAnim])
+    }, [fadeOpacityAnim])
 
     return (
         <Animated.View style={{
             ...styles.container,
-            opacity : fadeAnim,
+            opacity : fadeOpacityAnim,
         }}>
-            <StyledInput icon='person-outline' onChangeText={() => {}}/>
+            <StyledInput icon='person' onChangeText={(text) => onChange('patientName', text)} placeholder="Nome do paciente"/>
 
-            <StyledInput icon='mail-outline' onChangeText={() => {}}/>
+            <StyledInput icon='mail' onChangeText={(text) => onChange('patientEmail', text)}  placeholder="E-mail do paciente"/>
         </Animated.View>
     )
 }
