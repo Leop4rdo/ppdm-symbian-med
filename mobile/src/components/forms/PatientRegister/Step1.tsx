@@ -12,7 +12,7 @@ const PatientRegisterFormStep1 : React.FC = () => {
             {
                 toValue : 1,
                 useNativeDriver : true,
-                duration : 250,
+                duration : 500,
                 easing : Easing.out(Easing.ease)
             }
         ).start()

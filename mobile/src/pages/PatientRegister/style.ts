@@ -27,9 +27,17 @@ const styles = StyleSheet.create({
         fontFamily : fonts.POPPINS_MEDIUM,
         color : colors.BLUE,
         marginVertical : 16
+    },
+
+    titleContainer : {
+        flexDirection : "row",
+        justifyContent : "center",
+        alignItems : "center",
+    },
+
+    backButton : {
+        marginRight : 8
     }
-
-
 })
 
 export default styles;

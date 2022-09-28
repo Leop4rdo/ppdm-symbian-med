@@ -13,7 +13,8 @@ const StyledButton : React.FC<IButtonProps> = ({onPress, text}) => {
     return (
         <TouchableOpacity
             activeOpacity={.8}
-            style={buttonStyles.base}>
+            style={buttonStyles.base}
+            onPress={onPress}>
             <View >
                 <Text style={[buttonStyles.text]}>{text}</Text>
             </View>
