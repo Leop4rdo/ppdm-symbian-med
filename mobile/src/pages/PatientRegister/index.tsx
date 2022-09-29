@@ -1,6 +1,6 @@
 import { MaterialIcons } from '@expo/vector-icons'
-import React, { useState } from 'react'
-import { Image, Pressable, Text, Touchable, View } from "react-native"
+import { useState } from 'react'
+import { Image, Pressable, Text, View } from "react-native"
 import PatientRegisterFormStep1 from '../../components/forms/PatientRegister/Step1'
 import PatientRegisterFormStep2 from '../../components/forms/PatientRegister/Step2'
 import PatientRegisterFormStep3 from '../../components/forms/PatientRegister/Step3'
@@ -42,15 +42,15 @@ const PatientRegisterPage = () => {
     const forms = [
         {  
             component : <PatientRegisterFormStep1 onChange={handleChange} formValues={formValues}/>, 
-            isValid : () => !isEmpty(formValues.patientName) || formValues.patientName.length > 3 || isEmail(formValues.patientEmail)
+            isValid : () => formValues.patientName.length >= 3 && isEmail(formValues.patientEmail)
         },
         {  
             component : <PatientRegisterFormStep2 onChange={handleChange} formValues={formValues}/>, 
-            isValid : () => !isEmpty(formValues.patientPhone) || !isEmpty(formValues.patientCellphone)
+            isValid : () => formValues.patientPhone.length >= 8 && formValues.patientCellphone.length >= 8
         },
         {  
             component : <PatientRegisterFormStep3 onChange={handleChange} formValues={formValues}/>, 
-            isValid : () => !isEmpty(formValues.responsibleName) || formValues.responsibleName.length > 3 || !isEmpty(formValues.responsiblePhone)
+            isValid : () => formValues.responsibleName.length >= 3 && formValues.responsiblePhone.length >= 8
         }
     ]
 

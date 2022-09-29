@@ -4,7 +4,6 @@ import fonts from "../../../styles/typography";
 
 const styles = StyleSheet.create({
     container : {
-        height : '50%',
         justifyContent : 'space-evenly'
     },
 

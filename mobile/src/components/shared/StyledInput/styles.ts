@@ -1,13 +1,24 @@
 import { StyleSheet } from "react-native";
 import colors from "../../../styles/colors";
+import fonts from "../../../styles/typography";
 
 const styles = StyleSheet.create({
-    container : {
-        height : 56,
-        width : '80%',
-        margin : 12,
-        paddingHorizontal : 8,
+    fieldContainer : {
+        width : "80%",
+        flexDirection: "column",
+        margin : 16,
+    },
 
+    errorMessage : {
+        fontSize : 14,
+        color : colors.RED,
+        fontFamily : fonts.POPPINS_MEDIUM,
+        marginTop : 8
+    },
+
+    inputContainer : {
+        height : 56,
+        paddingHorizontal : 8,
         borderRadius : 12,
         borderWidth : 2,
 

@@ -1,5 +1,6 @@
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Animated, Easing } from "react-native"
+import { isEmail } from "../../../utils/validation"
 import StyledInput from "../../shared/StyledInput"
 import styles from "./styles"
 
@@ -28,9 +29,9 @@ const PatientRegisterFormStep1 : React.FC<IPatientRegisterFormProps> = ({ onChan
             ...styles.container,
             opacity : fadeOpacityAnim,
         }}>
-            <StyledInput icon='person' onChangeText={(text) => onChange('patientName', text)} placeholder="Nome do paciente"/>
+            <StyledInput icon='person' value={formValues.patientName} onChangeText={(text) => onChange('patientName', text)} validate={() => formValues.patientName.trim().length >= 3} placeholder="Nome do paciente"/>
 
-            <StyledInput icon='mail' onChangeText={(text) => onChange('patientEmail', text)}  placeholder="E-mail do paciente"/>
+            <StyledInput icon='mail' keyboardType="email-address" value={formValues.patientEmail} onChangeText={(text) => onChange('patientEmail', text)} validate={() => isEmail(formValues.patientEmail)} placeholder="E-mail do paciente"/>
         </Animated.View>
     )
 }

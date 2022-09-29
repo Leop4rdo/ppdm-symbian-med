@@ -37,6 +37,13 @@ const styles = StyleSheet.create({
 
     backButton : {
         marginRight : 8
+    },
+
+    formContainer : {
+        flex : 2,
+        justifyContent : "center",
+        flexDirection : "column",
+        alignItems : "center",
     }
 })
 
