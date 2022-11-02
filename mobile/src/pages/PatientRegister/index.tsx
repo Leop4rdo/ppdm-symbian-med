@@ -1,11 +1,12 @@
 import { MaterialIcons } from '@expo/vector-icons'
 import { useState } from 'react'
-import { Image, Pressable, Text, View } from "react-native"
+import { Alert, Image, Pressable, Text, View } from "react-native"
 import PatientRegisterFormStep1 from '../../components/forms/PatientRegister/Step1'
 import PatientRegisterFormStep2 from '../../components/forms/PatientRegister/Step2'
 import PatientRegisterFormStep3 from '../../components/forms/PatientRegister/Step3'
 import Logo from '../../components/shared/Logo'
 import StyledButton from '../../components/shared/StyledButton'
+import patientService from '../../services/PatientService'
 import colors from '../../styles/colors'
 import { isEmail, isEmpty } from '../../utils/validation'
 import styles from './style'
@@ -24,12 +25,32 @@ const PatientRegisterPage = () => {
     })
     
     const handleSubmit = () => {
-        if (currentStep <= forms.length - 1) {
-            if (forms[currentStep].isValid()) 
-                setCurrentStep(currentStep + 1)
+        console.log(currentStep)
+        console.log(forms.length - 1)
 
+        if (!forms[currentStep].isValid()) 
             return
+
+        if (currentStep == forms.length - 1)    
+            createPatient()
+        else
+            setCurrentStep(currentStep + 1)
+    }
+
+    const createPatient = async () => {
+        const body = {
+            name : formValues.patientName,
+            phone : formValues.patientPhone,
+            cellphone : formValues.patientCellphone,
+            email : formValues.patientEmail,
+            responsibleName : formValues.responsibleName,
+            responsiblePhone : formValues.responsiblePhone,
         }
+
+        const res = await patientService.create(body)
+
+        if (res.errors)
+            Alert.alert(res.errors[0])
     }
     
     const handleChange = (key : keyof typeof formValues, value : string) => {
@@ -50,7 +71,12 @@ const PatientRegisterPage = () => {
         },
         {  
             component : <PatientRegisterFormStep3 onChange={handleChange} formValues={formValues}/>, 
-            isValid : () => formValues.responsibleName.length >= 3 && formValues.responsiblePhone.length >= 8
+            isValid : () => {
+                if (formValues.responsibleName.length > 0 || formValues.responsiblePhone.length > 0)
+                    return formValues.responsibleName.length >= 3 && formValues.responsiblePhone.length >= 8
+                else
+                    return true
+            }
         }
     ]
 
