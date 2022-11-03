@@ -7,6 +7,8 @@ type PatientListFilters = {
 }
 
 const list = async (query ?: PatientListFilters) => {
+    console.log(`/patients?${buildQuery(query || {})}`)
+
     try {
         const { data } = await api.get((query) ? `/patients?${buildQuery(query)}` : '/patients')
 
