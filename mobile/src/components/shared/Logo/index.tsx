@@ -3,6 +3,7 @@ import { Text, View } from "react-native"
 import colors from "../../../styles/colors"
 import styles from "./styles"
 
+
 const Logo = () => {
     return (
         <View style={styles.logo}>
