@@ -4,13 +4,13 @@ import { useEffect, useState } from "react"
 import { ActivityIndicator, FlatList, Pressable, Text, View } from "react-native"
 import PatientCard from "../../components/PatientCard"
 import Header from "../../components/shared/Header"
-import IPatient from "../../interfaces/IPatient"
+import IPatient, { IPatientMinimal } from "../../interfaces/IPatient"
 import patientService from "../../services/PatientService"
 import styles from "./style"
 
 
 const HomePage : React.FC<{ navigation : any }> = ({ navigation }) => {
-    const [patients, setPatients] = useState<IPatient[]>([])
+    const [patients, setPatients] = useState<IPatientMinimal[]>([])
     const [refreshing, setRefreshing] = useState(false)
     const [loading, setLoading] = useState(false)
 

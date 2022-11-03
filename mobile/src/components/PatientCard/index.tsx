@@ -1,9 +1,9 @@
 import { Pressable, Text, View } from "react-native"
-import IPatient from "../../interfaces/IPatient"
+import IPatient, { IPatientMinimal } from "../../interfaces/IPatient"
 import styles from "./style"
 
 interface IPatientCardProps {
-    data : IPatient
+    data : IPatientMinimal
     onPress : () => void
 }
 

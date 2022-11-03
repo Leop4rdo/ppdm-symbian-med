@@ -9,3 +9,11 @@ export default interface IPatient {
     createdAt : string
     updatedAt : string
 }
+
+export interface IPatientMinimal {
+    id : string
+    name : string
+    email : string
+    createdAt : string
+    updatedAt : string
+}
