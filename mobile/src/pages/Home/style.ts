@@ -12,7 +12,19 @@ const styles = StyleSheet.create({
         backgroundColor : '#FFF',
         flex : 1,
         borderTopRightRadius : 24,
-        borderTopLeftRadius : 24
+        borderTopLeftRadius : 24,
+        
+        paddingHorizontal : 24
+    },
+
+    addButton : {
+        borderRadius : 100,
+
+        backgroundColor : colors.BLUE,
+
+        position : 'absolute',
+        right : 16,
+        bottom : 16
     }
 })
 

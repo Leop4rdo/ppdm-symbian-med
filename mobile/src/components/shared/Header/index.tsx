@@ -1,6 +1,6 @@
 import { MaterialIcons } from "@expo/vector-icons"
 import React from "react"
-import { Image, Text, View } from "react-native"
+import { Image, Pressable, Text, View } from "react-native"
 import styles from "./style"
 
 
@@ -11,11 +11,10 @@ interface IHeaderProps {
 
 const Header : React.FC<IHeaderProps> = ({ title, onReturn }) => {
 
-
     return (
         <View style={styles.header}>
-            <View>
-                {onReturn && <MaterialIcons name="arrow-back-ios" size={24} color='#FFF' />}
+            <View style={{flexDirection : "row", alignItems : 'center'}}>
+                {onReturn && <Pressable onPress={onReturn}><MaterialIcons name="arrow-back-ios" size={24} color='#FFF' /></Pressable>}
                 <Text style={styles.title}>{title}</Text>
             </View>
 

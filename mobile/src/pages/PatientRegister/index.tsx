@@ -6,27 +6,32 @@ import PatientRegisterFormStep2 from '../../components/forms/PatientRegister/Ste
 import PatientRegisterFormStep3 from '../../components/forms/PatientRegister/Step3'
 import Logo from '../../components/shared/Logo'
 import StyledButton from '../../components/shared/StyledButton'
+import IPatient from '../../interfaces/IPatient'
 import patientService from '../../services/PatientService'
 import colors from '../../styles/colors'
 import { isEmail, isEmpty } from '../../utils/validation'
 import styles from './style'
 
 
-const PatientRegisterPage = () => {
+const PatientRegisterPage : React.FC<{ route : any, navigation : any}> = ({ route, navigation}) => {
+    const editing : IPatient | undefined = route.params || undefined
+
     const [ currentStep, setCurrentStep ] = useState(0)
 
     const [ formValues, setFormValues ] = useState({
-        patientName : "",
-        patientEmail : "",
-        patientPhone : "",
-        patientCellphone : "",
-        responsibleName : "",
-        responsiblePhone : ""
+        patientName : editing?.name ?? "",
+        patientEmail : editing?.email ?? "",
+        patientPhone : editing?.phone ?? "",
+        patientCellphone : editing?.cellphone ?? "",
+        responsibleName : editing?.responsibleName ?? "",
+        responsiblePhone : editing?.responsiblePhone ?? "",
     })
     
     const handleSubmit = () => {
         console.log(currentStep)
         console.log(forms.length - 1)
+
+        console.log(forms[2].isValid())
 
         if (!forms[currentStep].isValid()) 
             return
@@ -47,10 +52,12 @@ const PatientRegisterPage = () => {
             responsiblePhone : formValues.responsiblePhone,
         }
 
-        const res = await patientService.create(body)
+        const res = (editing) ? await patientService.update(body, editing.id) : await patientService.create(body)
 
         if (res.errors)
             Alert.alert(res.errors[0])
+        else 
+            navigation.goBack()
     }
     
     const handleChange = (key : keyof typeof formValues, value : string) => {

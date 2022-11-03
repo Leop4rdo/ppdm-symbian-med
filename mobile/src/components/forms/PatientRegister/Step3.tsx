@@ -48,9 +48,9 @@ const PatientRegisterFormStep3 : React.FC<IPatientRegisterFormProps> = ({ onChan
         }}>
             <Text style={styles.info}>Os campos abaixo são opcionais</Text>
 
-            <StyledInput icon='person' value={formValues.responsibleName} placeholder="Nome do responsável" validate={() => formValues.responsibleName.trim().name > 3}   onChangeText={(text) => { onChange('responsibleName', text) }}/>
+            <StyledInput icon='person' value={formValues.responsibleName} placeholder="Nome do responsável" validate={() => (formValues.responsibleName > 0) ? formValues.responsibleName > 3 : true}   onChangeText={(text) => { onChange('responsibleName', text) }}/>
 
-            <StyledInput icon='phone' value={formValues.responsiblePhone} placeholder="Telefone do responsável" keyboardType="numeric" validate={() => formValues.responsiblePhone >= 8} onChangeText={(text) => { onChange('responsiblePhone', applyPhoneMask(text)) }}/>
+            <StyledInput icon='phone' value={formValues.responsiblePhone} placeholder="Telefone do responsável" keyboardType="numeric" validate={() => (formValues.responsiblePhone > 0) ? formValues.responsiblePhone >= 8 : true} onChangeText={(text) => { onChange('responsiblePhone', applyPhoneMask(text)) }}/>
         </Animated.View>
     )
 }
