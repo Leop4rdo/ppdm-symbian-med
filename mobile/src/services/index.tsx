@@ -5,4 +5,8 @@ const api = axios.create({
     timeout : 1000
 })
 
+export const buildQuery = (queryObj : Object) => {
+    return Object.entries(queryObj).map(([key, val]) => `${key}=${val}`).join('&')
+}
+
 export default api

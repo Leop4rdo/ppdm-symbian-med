@@ -1,8 +1,14 @@
-import api from "."
+import api, { buildQuery } from "."
 
-const list = async () => {
+type PatientListFilters = {
+    limit ?: number,
+    offset ?: number,
+    name ?: string
+}
+
+const list = async (query ?: PatientListFilters) => {
     try {
-        const { data } = await api.get('/patients')
+        const { data } = await api.get((query) ? `/patients?${buildQuery(query)}` : '/patients')
 
         return data
     } catch (err : any) {

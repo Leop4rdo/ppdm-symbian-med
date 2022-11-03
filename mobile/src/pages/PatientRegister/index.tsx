@@ -100,13 +100,13 @@ const PatientRegisterPage : React.FC<{ route : any, navigation : any}> = ({ rout
                             <MaterialIcons style={styles.backButton} name="arrow-back" size={24} color={colors.BLUE} />
                         </Pressable>
                     }
-                    <Text style={styles.pageTitle}>Cadastro de paciente</Text> 
+                    <Text style={styles.pageTitle}>{(editing) ? 'Edição' : 'Cadastro'} de paciente</Text> 
                 </View>         
             </View>
 
             {forms[currentStep].component}
 
-            <StyledButton onPress={handleSubmit} text={currentStep < forms.length - 1 ? 'Proximo' : 'cadastrar'}/>
+            <StyledButton onPress={handleSubmit} text={currentStep < forms.length - 1 ? 'Proximo' : (editing) ? 'salvar' : 'cadastrar'}/>
         </View>
     )
 }
